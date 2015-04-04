@@ -1,0 +1,22 @@
+!SESSION 2015-03-30 21:54:33.467 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.7.0_45
+java.vendor=Oracle Corporation
+BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/gmoy/.eclipse_keyring -showlocation
+Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/gmoy/.eclipse_keyring -showlocation
+
+!ENTRY org.eclipse.ui 4 4 2015-03-30 21:55:14.752
+!MESSAGE Referenced part does not exist yet: org.eclipse.ui.views.TaskList.
+
+!ENTRY com.palantir.eclipse.devpal 1 0 2015-03-30 21:55:15.652
+!MESSAGE DevPal Plugin Started.
+
+!ENTRY org.apache.ivyde.eclipse 1 0 2015-03-30 21:55:32.990
+!MESSAGE starting IvyDE plugin
+
+!ENTRY org.apache.ivyde.eclipse 1 0 2015-03-30 21:55:33.001
+!MESSAGE IvyDE plugin started
+
+!ENTRY com.palantir.eclipse.devpal 1 0 2015-03-30 21:59:16.844
+!MESSAGE DevPal Plugin Stopping.

@@ -1,7 +1,6 @@
 package com.guestlist.resources;
 
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import javax.validation.Valid;
 import javax.ws.rs.GET;
@@ -21,36 +20,22 @@ import org.elasticsearch.client.Client;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.base.Optional;
 import com.google.gson.Gson;
 import com.guestlist.core.Guest;
-import com.guestlist.es.managed.ManagedEsClient;
 
 @Path("/guest")
 @Produces(MediaType.APPLICATION_JSON)
 public class GuestResource {
     private static final Logger LOGGER = LoggerFactory.getLogger(GuestResource.class);
 
-    //private Map<Long,Guest> guests;
     private Client client;
     
     public GuestResource(Client client) {
     	this.client = client;
-        //this.guests = new ConcurrentHashMap<>();
     }
 
     @GET
     public Guest sayHello(@QueryParam("id") Long id) {
-    	/*
-    	if(id.isPresent()) {
-    		LOGGER.info("sayHello: {}", id.get());
-    		Guest guest = guests.get(id.get());
-    		if(guest != null) {
-    			return guest;
-    		}
-    	}
-    	*/
-
     	GetRequestBuilder getRequestBuilder = client.prepareGet("guestlist", "guest", id.toString());
     	GetResponse response = getRequestBuilder.execute().actionGet();
     	LOGGER.info("EsResponse String: {}", response.toString());
@@ -71,9 +56,6 @@ public class GuestResource {
         if(guest == null || guest.getId() == null || !guest.hasName()) {
         	throw new WebApplicationException(Response.Status.UNAUTHORIZED);
         }
-        
-        //guests.put(guest.getId(), guest);
-    	//LOGGER.info("guests size: {}", guests.size());
     	
     	IndexRequest indexRequest = new IndexRequest("guestlist","guest", guest.getId().toString());
     	indexRequest.source(new Gson().toJson(guest));

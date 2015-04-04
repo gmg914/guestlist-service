@@ -1,12 +1,11 @@
 package com.guestlist.core;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 public class Guest {
@@ -28,6 +27,7 @@ public class Guest {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
+        this.attendanceMap = new HashMap<>();
     }
 
     public Long getId() {
@@ -46,23 +46,17 @@ public class Guest {
     	return lastName;
     }
     
+    public Map<String,Boolean> getAttendanceMap() {
+    	return attendanceMap;
+    }
+    
     public boolean hasName() {
     	return StringUtils.isEmpty(firstName) || StringUtils.isEmpty(middleName) || StringUtils.isEmpty(lastName);
     }
     
+    
+    
     public String toString() {
     	return new Gson().toJson(this);
-    	/*
-    	  ObjectMapper mapper = new ObjectMapper( );
-    	  //try {
-    	  try {
-    		  return mapper.writeValueAsString(this);
-    	  }
-    	  catch (JsonProcessingException e) {
-    		  e.printStackTrace();
-    	  }
-    
-    	  return null;
-    	  */
     }
 }
